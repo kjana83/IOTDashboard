@@ -21,32 +21,6 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/index.html')
 });
 
-app.post('/:deviceId/led/:state', function (req, res) { 
-    var deviceId = req.params.deviceId;
-    var ledState = req.params.state;   
-    var messageData = '{"ledState":' + ledState + '}';
-    var client = IotHubClient.fromConnectionString(iotHubConnectionString);
-    client.open(function (err) {
-        if (err) {
-            console.Log('Could not open the connection to the service: ' + err.message);
-        } else {
-            client.send(deviceId, messageData, function (err) {
-                if (err) {
-                    console.Log('Could not send the message to the service: ' + err.message);
-                } else {
-                    client.close(function (err) {
-                        if (err) {
-                            console.Log('Could not close the connection to the service: ' + err.message);
-                        }
-                    });
-                }
-            });
-        }
-    });
-    
-    res.status(200).end();
-});
-
 app.use(express.static(__dirname + '/static'));
 
 // Instantiate an eventhub client

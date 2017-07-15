@@ -16,7 +16,7 @@ var chart = c3.generate({
         }
     }
 });
-
+toastr.info('Test Msg');
 var DATA_POINT_COUNT = 20;
 var LABEL_PREFIXES = /^avg|^min|^max/;
 var labels = null;
