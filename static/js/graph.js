@@ -16,7 +16,7 @@ var chart = c3.generate({
         }
     }
 });
-toastr.info('Test Msg');
+toastr.info('Started');
 var DATA_POINT_COUNT = 20;
 var LABEL_PREFIXES = /^avg|^min|^max/;
 var labels = null;
@@ -33,6 +33,10 @@ var appendColumn = function (index, label, value) {
         if (columns[index].length > DATA_POINT_COUNT) {
             columns[index].splice(1, 1);
         }
+        if (value>27 && value<=28)
+            toastr.warning('Temperature increased to ' + value);
+        if (value>28)
+            toastr.error('Temperature spiked to ' + value);
     }
 };
 
